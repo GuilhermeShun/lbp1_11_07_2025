@@ -4,23 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        a{
+            color: {{cores[tema]["Texto"]}}
+        }
+    </style>
 </head>
 <body style="background-color: {{cores[tema]['Fundo']}}; color: {{cores[tema]['Texto']}}">
-        
     <p>Seja bem vindo, {{user}}!</p>
     <p>Você já acessou esta página {{contador}} vezes!</p>
-    <h1>ESPORTES</h1>
-    <a href="/bemvindo/noticia1">Notícia 1</a>
-    <a href="/bemvindo/noticia2">Notícia 2</a>
-    <a href="/bemvindo/noticia3">Notícia 3</a><br>
-    <h1>ENTRETENIMENTO</h1>
-    <a href="/bemvindo/noticia4">Notícia 4</a>
-    <a href="/bemvindo/noticia5">Notícia 5</a>
-    <a href="/bemvindo/noticia6">Notícia 6</a><br>
-    <h1>LAZER</h1>
-    <a href="/bemvindo/noticia8">Notícia 7</a>
-    <a href="/bemvindo/noticia8">Notícia 8</a>
-    <a href="/bemvindo/noticia9">Notícia 9</a><br>
+    <table>
+    <tr {%if preferencia != 'esportes' and preferencia != 'nenhum'%} style='display: none' {%endif%}>
+    <td>ESPORTES</td>
+    <td><a href="/bemvindo/noticia1">Notícia 1</a></td>
+    <td><a href="/bemvindo/noticia2">Notícia 2</a></td>
+    <td><a href="/bemvindo/noticia3">Notícia 3</a></td>
+    </tr>
+    <tr {%if preferencia != 'entretenimento' and preferencia != 'nenhum'%} style='display: none' {%endif%}>
+    <td>ENTRETENIMENTO</td>
+    <td><a href="/bemvindo/noticia4">Notícia 4</a></td>
+    <td><a href="/bemvindo/noticia5">Notícia 5</a></td>
+    <td><a href="/bemvindo/noticia6">Notícia 6</a></td>
+    </tr>
+    <tr {%if preferencia != 'lazer' and preferencia != 'nenhum'%} style='display: none' {%endif%}>
+    <td>LAZER</td>
+    <td><a href="/bemvindo/noticia7">Notícia 7</a></td>
+    <td><a href="/bemvindo/noticia8">Notícia 8</a></td>
+    <td><a href="/bemvindo/noticia9">Notícia 9</a></td>
+    </tr>    
+    </table>
     <a href="/logout" style="color: {{cores[tema]['Texto']}}">Logout</a><br>
     <form action="/bemvindo" method="post">
         <select required name="tema" id="tema">
@@ -29,12 +41,12 @@
         </select>
         <input type="submit" value="Selecionar">
     </form>
-    <form action="/bemvindo" method="post">
-        <select required name="preferencia" id="preferencia">
-            <option value="Nenhum">Nenhum</option>
-            <option value="Esportes" {% if preferencia == 'esportes' %}selected{% endif %}>Esportes</option>
-            <option value="Entretenimento" {% if preferencia == 'entretenimento' %}selected{% endif %}>Entretenimento</option>
-            <option value="Lazer" {% if preferencia == 'lazer' %}selected{% endif %}>Lazer</option>
+    <form action="/bemvindo" required method="post">
+        <select name="preferencia" id="preferencia">
+            <option value="nenhum" {% if preferencia == 'nenhum'%}selected{%endif%}>Nenhum</option>
+            <option value="esportes" {% if preferencia == 'esportes' %}selected{% endif %}>Esportes</option>
+            <option value="entretenimento" {% if preferencia == 'entretenimento' %}selected{% endif %}>Entretenimento</option>
+            <option value="lazer" {% if preferencia == 'lazer' %}selected{% endif %}>Lazer</option>
         </select>
         <input type="submit" value="Selecionar">
     </form>
