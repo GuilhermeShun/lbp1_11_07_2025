@@ -28,7 +28,7 @@ def login():
 
 @app.route('/bemvindo', methods=['GET', 'POST'])
 def bemvindo():
-    #retoma o valor definido em resposta.set_cookie('username', usuario, max_age=60*10)
+    #retoma o valor definido em resposta.set_cookie('username', usuario)
     username = request.cookies.get('username') 
     if not username:
         return redirect(url_for('login'))
